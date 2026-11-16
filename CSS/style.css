@@ -1,3 +1,6 @@
+/* ==========================================
+   VARIÁVEIS GLOBAIS (O "ESTOJO DE CORES")
+   ========================================== */
 :root {
   --azul: #2c5f9e;
   --azul-escuro: #17375f;
@@ -6,8 +9,10 @@
   --ouro: #c9a227;
   --ouro-escuro: #9a7b12;
   --ouro-claro: #f4e3a1;
-  /* [ESTUDO]: Gradiente complexo com múltiplos pontos de parada (color stops) para simular efeito metálico dourado. */
+  
+  /* Mistura de cores em porcentagens para formar o brilho metálico dourado */
   --ouro-brilho: linear-gradient(135deg, #b8901c 0%, #f3dc82 42%, #c9a227 68%, #ecd472 100%);
+  
   --fundo: #fbf9f4;
   --texto: #2a3646;
   --texto-suave: #5b6676;
@@ -20,37 +25,43 @@
   --sombra-forte: 0 18px 40px rgba(23, 55, 95, 0.22);
 }
 
+/* ==========================================
+   CONFIGURAÇÕES GERAIS DA PÁGINA
+   ========================================== */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* [ESTUDO]: Torna a rolagem da página fluida e animada ao clicar em links âncora. */
+/* Transforma o pulo da página em um tobogã suave (rolagem fluida) */
 html { scroll-behavior: smooth; }
 
 body {
   font-family: var(--fonte-texto);
   color: var(--texto);
   line-height: 1.7;
-  /* [ESTUDO]: Trava uma largura mínima na tela para impedir que o layout desktop quebre. */
+  /* Cerca de proteção: impede que o site encolha demais e quebre o layout */
   min-width: 1100px;
   background: linear-gradient(180deg, #f1f6fb 0%, var(--fundo) 520px);
 }
 
 a { color: var(--azul); }
-/* [ESTUDO]: Estilização avançada de foco para acessibilidade (teclado). */
+
+/* Desenha uma bordinha dourada quando alguém navega pelo site usando a tecla Tab do teclado */
 a:focus-visible { outline: 3px solid var(--ouro); outline-offset: 3px; }
 
-/* [ESTUDO]: Animações customizadas (@keyframes) inexistentes no portfólio. */
+/* ==========================================
+   ANIMAÇÕES (MOVIMENTOS DA TELA)
+   ========================================== */
+/* Faz os elementos subirem suavemente revelando a página */
 @keyframes subir { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+/* Cria efeito de piscar/brilhar luzes */
 @keyframes brilho { from { opacity: 0.5; } to { opacity: 1; } }
+/* Faz o gradiente do botão correr para dar efeito de brilho metálico */
 @keyframes cintilar { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
 
-/* [ESTUDO]: Media query de acessibilidade que desliga animações se o usuário preferir menos movimento no SO. */
-@media (prefers-reduced-motion: reduce) {
-  * { animation: none !important; transition: none !important; }
-}
-
-/*Cabeçalho*/
+/* ==========================================
+   CABEÇALHO
+   ========================================== */
 .topo {
-  /* [ESTUDO]: Sobreposição de gradiente radial (luz no topo) com gradiente linear. */
+  /* Mistura um holofote de luz redondinho (radial) com uma pintura que desce (linear) */
   background:
     radial-gradient(ellipse at 50% 0%, rgba(143, 189, 232, 0.35), transparent 65%),
     linear-gradient(180deg, #1b4272 0%, var(--azul-escuro) 100%);
@@ -68,7 +79,7 @@ a:focus-visible { outline: 3px solid var(--ouro); outline-offset: 3px; }
 
 .marca { padding: 26px 16px 24px; }
 
-/* [ESTUDO]: Desenho de uma cruz 3D utilizando apenas CSS puro (sem imagem PNG/SVG), via pseudo-elementos. */
+/* Cruz desenhada inteira no CSS usando caixas e posições (sem imagem PNG) */
 .cruz { position: relative; display: block; width: 18px; height: 32px; margin: 0 auto 10px; }
 .cruz::before, .cruz::after { content: ""; position: absolute; background: var(--ouro-brilho); border-radius: 2px; box-shadow: 0 0 10px rgba(243, 220, 130, 0.8); }
 .cruz::before { left: 7px; top: 0; width: 4px; height: 32px; }
@@ -87,15 +98,16 @@ a:focus-visible { outline: 3px solid var(--ouro); outline-offset: 3px; }
 
 .diocese { margin-top: 4px; font-style: italic; color: var(--ouro-claro); letter-spacing: 0.04em; }
 
-/*Menu (fica visível ao rolar a página)*/
+/* ==========================================
+   MENU FIXO INTELIGENTE (STICKY)
+   ========================================== */
 .barra {
-  /* [ESTUDO]: Menu inteligente que gruda no topo ao rolar a página (Sticky Header). */
+  /* Funciona como um ímã: gruda no topo da tela conforme você desce a página */
   position: sticky;
   top: 0;
   z-index: 50;
   background: var(--azul-escuro);
   border-bottom: 3px solid transparent;
-  /* [ESTUDO]: Aplica o gradiente dourado diretamente na borda. */
   border-image: var(--ouro-brilho) 1;
   box-shadow: 0 6px 18px rgba(23, 55, 95, 0.3);
 }
@@ -115,7 +127,7 @@ a:focus-visible { outline: 3px solid var(--ouro); outline-offset: 3px; }
   transition: color 0.25s;
 }
 
-/* [ESTUDO]: Efeito de linha animada embaixo do menu usando scaleX (cresce do centro/lados). */
+/* Efeito de elástico: faz a linhazinha dourada crescer embaixo do menu ao passar o mouse */
 .menu a::after {
   content: "";
   position: absolute;
@@ -131,7 +143,9 @@ a:focus-visible { outline: 3px solid var(--ouro); outline-offset: 3px; }
 .menu a:hover::after, .menu a[aria-current="page"]::after { transform: scaleX(1); }
 .menu a[aria-current="page"] { color: var(--branco); }
 
-/*Botões*/
+/* ==========================================
+   BOTÕES
+   ========================================== */
 .botoes { display: flex; gap: 14px; margin-top: 28px; }
 
 .botao {
@@ -153,7 +167,9 @@ a:focus-visible { outline: 3px solid var(--ouro); outline-offset: 3px; }
 .botao.sec { background: transparent; color: var(--azul); box-shadow: inset 0 0 0 2px var(--azul); }
 .botao.sec:hover { background: var(--azul); color: var(--branco); }
 
-/*Abertura da página inicial*/
+/* ==========================================
+   SEÇÃO HERÓI (ABERTURA DA PÁGINA)
+   ========================================== */
 .heroi {
   position: relative;
   overflow: hidden;
@@ -161,7 +177,6 @@ a:focus-visible { outline: 3px solid var(--ouro); outline-offset: 3px; }
   background: radial-gradient(ellipse at 78% 30%, #ffffff 0%, #eaf2fb 45%, var(--azul-claro) 100%);
 }
 
-/* [ESTUDO]: Criação de raios de luz geométricos no fundo usando gradiente cônico repetitivo e máscara CSS. */
 .heroi::before {
   content: "";
   position: absolute;
@@ -176,7 +191,7 @@ a:focus-visible { outline: 3px solid var(--ouro); outline-offset: 3px; }
   position: relative;
   width: min(1120px, 100% - 64px);
   margin: 0 auto;
-  /* [ESTUDO]: Uso de CSS Grid em vez de Flexbox para estruturar o bloco Hero em colunas assimétricas. */
+  /* Tabuleiro de xadrez flexível fatiando o herói em duas colunas */
   display: grid;
   grid-template-columns: 1fr 1.05fr;
   gap: 68px;
@@ -231,7 +246,7 @@ a:focus-visible { outline: 3px solid var(--ouro); outline-offset: 3px; }
   box-shadow: 0 0 0 3px var(--ouro), 0 26px 50px rgba(23, 55, 95, 0.28), 0 0 70px rgba(243, 220, 130, 0.6);
 }
 
-/* [ESTUDO]: Selo redondo flutuante com posicionamento absoluto para sobrepor a foto principal. */
+/* Selo redondo colado por cima da foto (como um adesivo de ímã) */
 .selo {
   position: absolute;
   left: -38px;
@@ -252,12 +267,14 @@ a:focus-visible { outline: 3px solid var(--ouro); outline-offset: 3px; }
 .selo small { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; }
 .selo strong { font-size: 2rem; line-height: 1.05; }
 
-/*Cartões de informação sobrepostos à abertura*/
+/* ==========================================
+   CARTÕES DESTAQUES SOBREPOSTOS
+   ========================================== */
 .destaques {
   position: relative;
   z-index: 2;
   width: min(1120px, 100% - 64px);
-  /* [ESTUDO]: Margem negativa (margin-top negativo) para fazer os cartões subirem por cima da seção anterior. */
+  /* Margem negativa: puxa os cartões para cima fazendo-os invadir a seção anterior */
   margin: -70px auto 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -283,7 +300,9 @@ a:focus-visible { outline: 3px solid var(--ouro); outline-offset: 3px; }
 .cartao .mais { display: inline-block; margin-top: 12px; font-weight: 700; text-decoration: none; }
 .cartao .mais:hover { text-decoration: underline; }
 
-/*Conteúdo*/
+/* ==========================================
+   CONTEÚDO E BLOCOS
+   ========================================== */
 main { width: min(1120px, 100% - 64px); margin: 0 auto; padding: 72px 0 80px; }
 .secao { margin-bottom: 76px; }
 
@@ -335,11 +354,13 @@ main { width: min(1120px, 100% - 64px); margin: 0 auto; padding: 72px 0 80px; }
   box-shadow: 0 6px 14px rgba(154, 123, 18, 0.35), inset 0 0 0 3px rgba(255, 255, 255, 0.55);
 }
 
-/*Galeria em arco (janelas da igreja)*/
-/* [ESTUDO]: Grid com 3 colunas de larguras diferentes (310px, 1fr, 310px) criando assimetria proposital. */
+/* ==========================================
+   GALERIA EM ARCO (VITRAIS)
+   ========================================== */
+/* Grid com tamanhos diferentes nas colunas (assimetria artística) */
 .galeria-arcos { display: grid; grid-template-columns: 310px 1fr 310px; gap: 48px; align-items: center; }
 
-/* [ESTUDO]: Border-radius assimétrico avançado simulando o formato de portas ou vitrais de igreja. */
+/* Borda arredondada personalizada simulando ogivas/portas de igrejas tradicionais */
 .arco { padding: 7px; border-radius: 160px 160px 20px 20px; background: var(--ouro-brilho); box-shadow: var(--sombra-forte), 0 0 44px rgba(243, 220, 130, 0.5); }
 .arco img { display: block; width: 100%; height: 410px; object-fit: cover; border-radius: 154px 154px 14px 14px; }
 .arco .topo-foto { object-position: center 12%; }
@@ -349,7 +370,9 @@ main { width: min(1120px, 100% - 64px); margin: 0 auto; padding: 72px 0 80px; }
 .galeria-texto p { color: var(--texto-suave); }
 .galeria-texto .botoes { justify-content: center; }
 
-/*Faixa de datas*/
+/* ==========================================
+   FAIXAS DE DATAS E EVENTOS
+   ========================================== */
 .faixa-datas {
   position: relative;
   padding: 64px 0;
@@ -369,7 +392,9 @@ main { width: min(1120px, 100% - 64px); margin: 0 auto; padding: 72px 0 80px; }
 .data-selo strong { display: block; font-size: 2.2rem; line-height: 1; }
 .data-selo span { display: block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
 
-/*Contato*/
+/* ==========================================
+   CONTATO
+   ========================================== */
 .contato {
   padding: 44px 40px 40px;
   text-align: center;
@@ -384,12 +409,14 @@ main { width: min(1120px, 100% - 64px); margin: 0 auto; padding: 72px 0 80px; }
 .contato small { display: block; margin-bottom: 4px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ouro-claro); }
 .contato a { color: var(--branco); }
 
-/*Faixa de título das páginas internas*/
+/* ==========================================
+   CAPAS DAS PÁGINAS INTERNAS
+   ========================================== */
 .capa {
   padding: 78px 16px 74px;
   text-align: center;
   color: var(--branco);
-  /* [ESTUDO]: Sobreposição de imagem de fundo com gradiente escuro usando propriedades compostas (shorthand de background). */
+  /* Mistura uma cor escura transparente direto por cima da foto de fundo */
   background:
     linear-gradient(rgba(23, 55, 95, 0.84), rgba(44, 95, 158, 0.74)),
     url("../Assets/exterior-1.jpg") center 58% / cover no-repeat,
@@ -400,7 +427,9 @@ main { width: min(1120px, 100% - 64px); margin: 0 auto; padding: 72px 0 80px; }
 .capa h1::after { content: ""; display: block; width: 130px; height: 4px; margin: 16px auto 0; border-radius: 2px; background: linear-gradient(90deg, transparent, #c9a227 20%, #f3dc82 50%, #c9a227 80%, transparent); }
 .capa p { margin-top: 16px; font-size: 1.1rem; color: var(--azul-claro); }
 
-/*Eventos*/
+/* ==========================================
+   AGENDA E EVENTOS
+   ========================================== */
 .agenda { display: grid; gap: 22px; max-width: 880px; margin: 0 auto; }
 
 .evento { display: grid; grid-template-columns: 124px 1fr; overflow: hidden; border-radius: 14px; background: var(--branco); box-shadow: var(--sombra); transition: transform 0.25s, box-shadow 0.25s; }
@@ -417,8 +446,10 @@ main { width: min(1120px, 100% - 64px); margin: 0 auto; padding: 72px 0 80px; }
 
 .etiqueta { display: inline-block; padding: 2px 12px; border-radius: 999px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--azul); background: var(--azul-claro); }
 
-/*Horários de missa*/
-/* [ESTUDO]: Grid de 4 colunas repetitivas para organizar blocos de horários lado a lado. */
+/* ==========================================
+   HORÁRIOS DE MISSA
+   ========================================== */
+/* Grid de 4 colunas repetidas perfeitamente iguais */
 .horarios { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
 .horario { padding: 28px 18px 24px; text-align: center; background: var(--branco); border-radius: 14px; box-shadow: var(--sombra); transition: transform 0.25s, box-shadow 0.25s; }
 .horario:hover { transform: translateY(-6px); box-shadow: var(--sombra-forte), 0 0 30px rgba(243, 220, 130, 0.4); }
@@ -426,12 +457,14 @@ main { width: min(1120px, 100% - 64px); margin: 0 auto; padding: 72px 0 80px; }
 .horario strong { display: block; margin: 8px 0 4px; font-family: var(--fonte-titulo); font-size: 2.3rem; line-height: 1.1; color: var(--azul); }
 .horario small { color: var(--texto-suave); }
 
-/*Tabelas*/
-/* [ESTUDO]: Estilização completa de tabelas de dados nativas (table, th, td) com efeito zebrado. */
+/* ==========================================
+   TABELAS DE DADOS
+   ========================================== */
 table { width: 100%; border-collapse: collapse; overflow: hidden; border-radius: 14px; background: var(--branco); box-shadow: var(--sombra); }
 th, td { padding: 15px 22px; text-align: left; }
 th { font-family: var(--fonte-titulo); font-size: 1.05rem; color: var(--branco); background: linear-gradient(135deg, #1f4c82, var(--azul-escuro)); }
 td:first-child { font-weight: 600; color: var(--azul-escuro); }
+/* Efeito zebrado nas linhas pares da tabela */
 tbody tr:nth-child(even) { background: #f6f9fd; }
 tbody tr:hover { background: #fff7d9; }
 tr + tr td { border-top: 1px solid #e9eef5; }
@@ -439,8 +472,9 @@ tr + tr td { border-top: 1px solid #e9eef5; }
 .aviso { margin: 26px auto 0; max-width: 880px; padding: 14px 20px; background: #fff7dd; border-radius: 10px; border-left: 5px solid var(--ouro); font-size: 0.95rem; color: var(--texto); }
 .fontes { margin: 40px auto 0; max-width: 880px; font-size: 0.88rem; color: var(--texto-suave); text-align: center; }
 
-/*História*/
-/* [ESTUDO]: Linha do tempo vertical construída com listas ordenadas (<ol>) e marcadores via pseudo-elementos. */
+/* ==========================================
+   HISTÓRIA (LINHA DO TEMPO)
+   ========================================== */
 .linha-tempo { position: relative; max-width: 860px; margin: 0 auto; list-style: none; }
 .linha-tempo::before { content: ""; position: absolute; left: 18px; top: 8px; bottom: 8px; width: 4px; border-radius: 2px; background: linear-gradient(180deg, #f3dc82, #c9a227, #f3dc82); }
 .linha-tempo li { position: relative; padding: 0 0 34px 68px; }
@@ -453,7 +487,9 @@ tr + tr td { border-top: 1px solid #e9eef5; }
 .foto-historia img { display: block; width: 100%; height: auto; border-radius: 10px; }
 .foto-historia figcaption { padding: 12px 8px 4px; text-align: center; font-family: var(--fonte-titulo); font-style: italic; color: var(--azul-escuro); }
 
-/*Rodapé*/
+/* ==========================================
+   RODAPÉ
+   ========================================== */
 .rodape { color: var(--azul-claro); background: radial-gradient(ellipse at 50% 0%, rgba(143, 189, 232, 0.25), transparent 70%), var(--azul-escuro); border-top: 4px solid transparent; border-image: var(--ouro-brilho) 1; }
 .rodape-int { width: min(1120px, 100% - 64px); margin: 0 auto; padding: 48px 0 34px; display: grid; grid-template-columns: 1.3fr 1fr 1.2fr; gap: 48px; }
 .rodape h4 { margin-bottom: 12px; font-family: var(--fonte-titulo); font-size: 1.2rem; color: var(--ouro-claro); }
