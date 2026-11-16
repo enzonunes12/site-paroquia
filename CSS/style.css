@@ -1,12 +1,12 @@
-
 :root {
   --azul: #2c5f9e;
   --azul-escuro: #17375f;
   --azul-claro: #dbe9f7;
-  --celeste: #8fbde8;
+  --azul-celeste: #8fbde8;
   --ouro: #c9a227;
   --ouro-escuro: #9a7b12;
   --ouro-claro: #f4e3a1;
+  /* [ESTUDO]: Gradiente complexo com múltiplos pontos de parada (color stops) para simular efeito metálico dourado. */
   --ouro-brilho: linear-gradient(135deg, #b8901c 0%, #f3dc82 42%, #c9a227 68%, #ecd472 100%);
   --fundo: #fbf9f4;
   --texto: #2a3646;
@@ -22,30 +22,35 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* [ESTUDO]: Torna a rolagem da página fluida e animada ao clicar em links âncora. */
 html { scroll-behavior: smooth; }
 
 body {
   font-family: var(--fonte-texto);
   color: var(--texto);
   line-height: 1.7;
+  /* [ESTUDO]: Trava uma largura mínima na tela para impedir que o layout desktop quebre. */
   min-width: 1100px;
   background: linear-gradient(180deg, #f1f6fb 0%, var(--fundo) 520px);
 }
 
 a { color: var(--azul); }
+/* [ESTUDO]: Estilização avançada de foco para acessibilidade (teclado). */
 a:focus-visible { outline: 3px solid var(--ouro); outline-offset: 3px; }
 
-/* Animações (desligadas para quem prefere menos movimento)*/
+/* [ESTUDO]: Animações customizadas (@keyframes) inexistentes no portfólio. */
 @keyframes subir { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 @keyframes brilho { from { opacity: 0.5; } to { opacity: 1; } }
 @keyframes cintilar { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
 
+/* [ESTUDO]: Media query de acessibilidade que desliga animações se o usuário preferir menos movimento no SO. */
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }
 }
 
 /*Cabeçalho*/
 .topo {
+  /* [ESTUDO]: Sobreposição de gradiente radial (luz no topo) com gradiente linear. */
   background:
     radial-gradient(ellipse at 50% 0%, rgba(143, 189, 232, 0.35), transparent 65%),
     linear-gradient(180deg, #1b4272 0%, var(--azul-escuro) 100%);
@@ -63,6 +68,7 @@ a:focus-visible { outline: 3px solid var(--ouro); outline-offset: 3px; }
 
 .marca { padding: 26px 16px 24px; }
 
+/* [ESTUDO]: Desenho de uma cruz 3D utilizando apenas CSS puro (sem imagem PNG/SVG), via pseudo-elementos. */
 .cruz { position: relative; display: block; width: 18px; height: 32px; margin: 0 auto 10px; }
 .cruz::before, .cruz::after { content: ""; position: absolute; background: var(--ouro-brilho); border-radius: 2px; box-shadow: 0 0 10px rgba(243, 220, 130, 0.8); }
 .cruz::before { left: 7px; top: 0; width: 4px; height: 32px; }
@@ -83,11 +89,13 @@ a:focus-visible { outline: 3px solid var(--ouro); outline-offset: 3px; }
 
 /*Menu (fica visível ao rolar a página)*/
 .barra {
+  /* [ESTUDO]: Menu inteligente que gruda no topo ao rolar a página (Sticky Header). */
   position: sticky;
   top: 0;
   z-index: 50;
   background: var(--azul-escuro);
   border-bottom: 3px solid transparent;
+  /* [ESTUDO]: Aplica o gradiente dourado diretamente na borda. */
   border-image: var(--ouro-brilho) 1;
   box-shadow: 0 6px 18px rgba(23, 55, 95, 0.3);
 }
@@ -107,6 +115,7 @@ a:focus-visible { outline: 3px solid var(--ouro); outline-offset: 3px; }
   transition: color 0.25s;
 }
 
+/* [ESTUDO]: Efeito de linha animada embaixo do menu usando scaleX (cresce do centro/lados). */
 .menu a::after {
   content: "";
   position: absolute;
@@ -152,7 +161,7 @@ a:focus-visible { outline: 3px solid var(--ouro); outline-offset: 3px; }
   background: radial-gradient(ellipse at 78% 30%, #ffffff 0%, #eaf2fb 45%, var(--azul-claro) 100%);
 }
 
-/*raios de luz suaves atrás da foto*/
+/* [ESTUDO]: Criação de raios de luz geométricos no fundo usando gradiente cônico repetitivo e máscara CSS. */
 .heroi::before {
   content: "";
   position: absolute;
@@ -167,6 +176,7 @@ a:focus-visible { outline: 3px solid var(--ouro); outline-offset: 3px; }
   position: relative;
   width: min(1120px, 100% - 64px);
   margin: 0 auto;
+  /* [ESTUDO]: Uso de CSS Grid em vez de Flexbox para estruturar o bloco Hero em colunas assimétricas. */
   display: grid;
   grid-template-columns: 1fr 1.05fr;
   gap: 68px;
@@ -221,6 +231,7 @@ a:focus-visible { outline: 3px solid var(--ouro); outline-offset: 3px; }
   box-shadow: 0 0 0 3px var(--ouro), 0 26px 50px rgba(23, 55, 95, 0.28), 0 0 70px rgba(243, 220, 130, 0.6);
 }
 
+/* [ESTUDO]: Selo redondo flutuante com posicionamento absoluto para sobrepor a foto principal. */
 .selo {
   position: absolute;
   left: -38px;
@@ -246,6 +257,7 @@ a:focus-visible { outline: 3px solid var(--ouro); outline-offset: 3px; }
   position: relative;
   z-index: 2;
   width: min(1120px, 100% - 64px);
+  /* [ESTUDO]: Margem negativa (margin-top negativo) para fazer os cartões subirem por cima da seção anterior. */
   margin: -70px auto 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -324,8 +336,10 @@ main { width: min(1120px, 100% - 64px); margin: 0 auto; padding: 72px 0 80px; }
 }
 
 /*Galeria em arco (janelas da igreja)*/
+/* [ESTUDO]: Grid com 3 colunas de larguras diferentes (310px, 1fr, 310px) criando assimetria proposital. */
 .galeria-arcos { display: grid; grid-template-columns: 310px 1fr 310px; gap: 48px; align-items: center; }
 
+/* [ESTUDO]: Border-radius assimétrico avançado simulando o formato de portas ou vitrais de igreja. */
 .arco { padding: 7px; border-radius: 160px 160px 20px 20px; background: var(--ouro-brilho); box-shadow: var(--sombra-forte), 0 0 44px rgba(243, 220, 130, 0.5); }
 .arco img { display: block; width: 100%; height: 410px; object-fit: cover; border-radius: 154px 154px 14px 14px; }
 .arco .topo-foto { object-position: center 12%; }
@@ -375,6 +389,7 @@ main { width: min(1120px, 100% - 64px); margin: 0 auto; padding: 72px 0 80px; }
   padding: 78px 16px 74px;
   text-align: center;
   color: var(--branco);
+  /* [ESTUDO]: Sobreposição de imagem de fundo com gradiente escuro usando propriedades compostas (shorthand de background). */
   background:
     linear-gradient(rgba(23, 55, 95, 0.84), rgba(44, 95, 158, 0.74)),
     url("../Assets/exterior-1.jpg") center 58% / cover no-repeat,
@@ -403,6 +418,7 @@ main { width: min(1120px, 100% - 64px); margin: 0 auto; padding: 72px 0 80px; }
 .etiqueta { display: inline-block; padding: 2px 12px; border-radius: 999px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--azul); background: var(--azul-claro); }
 
 /*Horários de missa*/
+/* [ESTUDO]: Grid de 4 colunas repetitivas para organizar blocos de horários lado a lado. */
 .horarios { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
 .horario { padding: 28px 18px 24px; text-align: center; background: var(--branco); border-radius: 14px; box-shadow: var(--sombra); transition: transform 0.25s, box-shadow 0.25s; }
 .horario:hover { transform: translateY(-6px); box-shadow: var(--sombra-forte), 0 0 30px rgba(243, 220, 130, 0.4); }
@@ -411,6 +427,7 @@ main { width: min(1120px, 100% - 64px); margin: 0 auto; padding: 72px 0 80px; }
 .horario small { color: var(--texto-suave); }
 
 /*Tabelas*/
+/* [ESTUDO]: Estilização completa de tabelas de dados nativas (table, th, td) com efeito zebrado. */
 table { width: 100%; border-collapse: collapse; overflow: hidden; border-radius: 14px; background: var(--branco); box-shadow: var(--sombra); }
 th, td { padding: 15px 22px; text-align: left; }
 th { font-family: var(--fonte-titulo); font-size: 1.05rem; color: var(--branco); background: linear-gradient(135deg, #1f4c82, var(--azul-escuro)); }
@@ -423,6 +440,7 @@ tr + tr td { border-top: 1px solid #e9eef5; }
 .fontes { margin: 40px auto 0; max-width: 880px; font-size: 0.88rem; color: var(--texto-suave); text-align: center; }
 
 /*História*/
+/* [ESTUDO]: Linha do tempo vertical construída com listas ordenadas (<ol>) e marcadores via pseudo-elementos. */
 .linha-tempo { position: relative; max-width: 860px; margin: 0 auto; list-style: none; }
 .linha-tempo::before { content: ""; position: absolute; left: 18px; top: 8px; bottom: 8px; width: 4px; border-radius: 2px; background: linear-gradient(180deg, #f3dc82, #c9a227, #f3dc82); }
 .linha-tempo li { position: relative; padding: 0 0 34px 68px; }
