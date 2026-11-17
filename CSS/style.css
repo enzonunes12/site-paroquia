@@ -1,5 +1,5 @@
 /* ==========================================
-   1. Cores
+    Cores
    Guarda cores e fontes globais para mudar o site inteiro de uma vez.
    ========================================== */
 :root {
@@ -24,7 +24,7 @@
 }
 
 /* ==========================================
-   2. Configurações Gerais
+    Configurações Gerais
    ========================================== */
 /* [*] Zera margens padrão e deixa rolagem suave (escorregador) */
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -42,14 +42,14 @@ a { color: var(--azul); }
 a:focus-visible { outline: 3px solid var(--ouro); outline-offset: 3px; }
 
 /* ==========================================
-   3. ANIMAÇÕES
+    ANIMAÇÕES
    ========================================== */
 @keyframes subir { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 @keyframes brilho { from { opacity: 0.5; } to { opacity: 1; } }
 @keyframes cintilar { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
 
 /* ==========================================
-   4. CABEÇALHO E CRUZ (CSS PURO)
+    Cabeçalho e Cruz
    ========================================== */
 .topo {
   background:
@@ -69,7 +69,7 @@ a:focus-visible { outline: 3px solid var(--ouro); outline-offset: 3px; }
 
 .marca { padding: 26px 16px 24px; }
 
-/* [Apresentação - CRUZ] Feita sem imagem PNG! Usa ::before e ::after (retângulos cruzados) */
+/* [Cruz]Usa ::before e ::after (retângulos cruzados) */
 .cruz { position: relative; display: block; width: 18px; height: 32px; margin: 0 auto 10px; }
 .cruz::before, .cruz::after { content: ""; position: absolute; background: var(--ouro-brilho); border-radius: 2px; box-shadow: 0 0 10px rgba(243, 220, 130, 0.8); }
 .cruz::before { left: 7px; top: 0; width: 4px; height: 32px; }
@@ -89,9 +89,9 @@ a:focus-visible { outline: 3px solid var(--ouro); outline-offset: 3px; }
 .diocese { margin-top: 4px; font-style: italic; color: var(--ouro-claro); letter-spacing: 0.04em; }
 
 /* ==========================================
-   5. MENU STICKY (GRUDA NO TOPO)
+    Menu fixo no topo
    ========================================== */
-/* [Apresentação - MENU] position: sticky faz o menu grudar no topo ao rolar a página */
+/* [Menu] position: sticky faz o menu grudar no topo ao rolar a página */
 .barra {
   position: sticky;
   top: 0;
@@ -117,7 +117,7 @@ a:focus-visible { outline: 3px solid var(--ouro); outline-offset: 3px; }
   transition: color 0.25s;
 }
 
-/* [Apresentação] Efeito elástico: linha cresce com scaleX ao passar o mouse */
+/* Efeito elástico: linha cresce com scaleX ao passar o mouse */
 .menu a::after {
   content: "";
   position: absolute;
@@ -134,7 +134,7 @@ a:focus-visible { outline: 3px solid var(--ouro); outline-offset: 3px; }
 .menu a[aria-current="page"] { color: var(--branco); }
 
 /* ==========================================
-   6. BOTÕES
+    BOTÕES
    ========================================== */
 .botoes { display: flex; gap: 14px; margin-top: 28px; }
 
@@ -154,13 +154,14 @@ a:focus-visible { outline: 3px solid var(--ouro); outline-offset: 3px; }
 
 .botao:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(154, 123, 18, 0.45), inset 0 0 0 1px rgba(255, 255, 255, 0.6); animation: cintilar 1.6s linear infinite; }
 
-/* [Apresentação] Botão secundário: fundo transparente e borda interna (inset) */
+/* Botão secundário: fundo transparente e borda interna (inset) */
 .botao.sec { background: transparent; color: var(--azul); box-shadow: inset 0 0 0 2px var(--azul); }
 .botao.sec:hover { background: var(--azul); color: var(--branco); }
 
 /* ==========================================
-   7. SEÇÃO HERÓI E RAIOS DE LUZ
+    Seção Heroi(Heroi pois é a pricipal que "salva" a pagina, Luzes)
    ========================================== */
+   /* A cor clara de fundo sem o recorte */
 .heroi {
   position: relative;
   overflow: hidden;
@@ -168,7 +169,7 @@ a:focus-visible { outline: 3px solid var(--ouro); outline-offset: 3px; }
   background: radial-gradient(ellipse at 78% 30%, #ffffff 0%, #eaf2fb 45%, var(--azul-claro) 100%);
 }
 
-/* [Apresentação - LUZES] repeating-conic-gradient desenha os raios de sol de fundo */
+/* [Luzes] repeating-conic-gradient desenha os raios de sol de fundo */
 .heroi::before {
   content: "";
   position: absolute;
@@ -260,7 +261,7 @@ a:focus-visible { outline: 3px solid var(--ouro); outline-offset: 3px; }
 .selo strong { font-size: 2rem; line-height: 1.05; }
 
 /* ==========================================
-   8. CARTÕES DESTAQUES
+    CARTÕES DESTAQUES
    ========================================== */
 .destaques {
   position: relative;
@@ -293,11 +294,11 @@ a:focus-visible { outline: 3px solid var(--ouro); outline-offset: 3px; }
 .cartao .mais:hover { text-decoration: underline; }
 
 /* ==========================================
-   9. CONTEÚDO E GRID (.TRES)
+    CONTEÚDO E GRID (.TRES)
    ========================================== */
 main { width: min(1120px, 100% - 64px); margin: 0 auto; padding: 72px 0 80px; }
 .secao { margin-bottom: 76px; }
-
+/* > = a primeira variavel, nesse caso o primeiro h2 que vem*/
 .secao > h2 {
   font-family: var(--fonte-titulo);
   font-size: 2.2rem;
@@ -306,7 +307,7 @@ main { width: min(1120px, 100% - 64px); margin: 0 auto; padding: 72px 0 80px; }
   text-align: center;
   margin-bottom: 40px;
 }
-
+/*estilo logo depois do h2, a barra dourada*/
 .secao > h2::after {
   content: "";
   display: block;
@@ -320,7 +321,7 @@ main { width: min(1120px, 100% - 64px); margin: 0 auto; padding: 72px 0 80px; }
 .secao > p { max-width: 72ch; margin-left: auto; margin-right: auto; }
 .secao > p + p { margin-top: 14px; }
 
-/* [GRID] repeat(3, 1fr) divide o espaço em 3 colunas iguais */
+/* [Grid] repeat(3, 1fr) divide o espaço em 3 colunas iguais */
 .tres { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
 .dois { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; }
 
@@ -346,7 +347,7 @@ main { width: min(1120px, 100% - 64px); margin: 0 auto; padding: 72px 0 80px; }
 }
 
 /* ==========================================
-   10. GALERIA EM ARCO
+    GALERIA EM ARCO
    ========================================== */
 .galeria-arcos { display: grid; grid-template-columns: 310px 1fr 310px; gap: 48px; align-items: center; }
 
@@ -360,7 +361,7 @@ main { width: min(1120px, 100% - 64px); margin: 0 auto; padding: 72px 0 80px; }
 .galeria-texto .botoes { justify-content: center; }
 
 /* ==========================================
-   11. FAIXA DE DATAS
+    FAIXA DE DATAS
    ========================================== */
 .faixa-datas {
   position: relative;
@@ -382,7 +383,7 @@ main { width: min(1120px, 100% - 64px); margin: 0 auto; padding: 72px 0 80px; }
 .data-selo span { display: block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
 
 /* ==========================================
-   12. CONTATO
+    CONTATO
    ========================================== */
 .contato {
   padding: 44px 40px 40px;
@@ -399,7 +400,7 @@ main { width: min(1120px, 100% - 64px); margin: 0 auto; padding: 72px 0 80px; }
 .contato a { color: var(--branco); }
 
 /* ==========================================
-   13. CAPAS
+    CAPAS
    ========================================== */
 .capa {
   padding: 78px 16px 74px;
@@ -416,8 +417,9 @@ main { width: min(1120px, 100% - 64px); margin: 0 auto; padding: 72px 0 80px; }
 .capa p { margin-top: 16px; font-size: 1.1rem; color: var(--azul-claro); }
 
 /* ==========================================
-   14. AGENDA E EVENTOS
+    AGENDA E EVENTOS
    ========================================== */
+   /*grid:funcioando aq na parte do dourado deixando a coluna fixa com 124px e o resto livre*/
 .agenda { display: grid; gap: 22px; max-width: 880px; margin: 0 auto; }
 
 .evento { display: grid; grid-template-columns: 124px 1fr; overflow: hidden; border-radius: 14px; background: var(--branco); box-shadow: var(--sombra); transition: transform 0.25s, box-shadow 0.25s; }
@@ -435,7 +437,7 @@ main { width: min(1120px, 100% - 64px); margin: 0 auto; padding: 72px 0 80px; }
 .etiqueta { display: inline-block; padding: 2px 12px; border-radius: 999px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--azul); background: var(--azul-claro); }
 
 /* ==========================================
-   15. HORÁRIOS DE MISSA
+    HORÁRIOS DE MISSA
    ========================================== */
 .horarios { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
 .horario { padding: 28px 18px 24px; text-align: center; background: var(--branco); border-radius: 14px; box-shadow: var(--sombra); transition: transform 0.25s, box-shadow 0.25s; }
@@ -445,8 +447,17 @@ main { width: min(1120px, 100% - 64px); margin: 0 auto; padding: 72px 0 80px; }
 .horario small { color: var(--texto-suave); }
 
 /* ==========================================
-   16. TABELAS
+    TABELAS
    ========================================== */
+   /*border collapse: junta as linhas e colunas
+   tr:linha horizontal
+   th:conteudo do cabecalho
+   td:data da tabela
+   td:first-child:primeira linha de todas as tds
+   even:par
+   tr:nth-child:pega posicoes pares(even)
+   tr+tr:pega todas as linhas que vem depois da primeira
+   */
 table { width: 100%; border-collapse: collapse; overflow: hidden; border-radius: 14px; background: var(--branco); box-shadow: var(--sombra); }
 th, td { padding: 15px 22px; text-align: left; }
 th { font-family: var(--fonte-titulo); font-size: 1.05rem; color: var(--branco); background: linear-gradient(135deg, #1f4c82, var(--azul-escuro)); }
@@ -458,7 +469,8 @@ tr + tr td { border-top: 1px solid #e9eef5; }
 .aviso { margin: 26px auto 0; max-width: 880px; padding: 14px 20px; background: #fff7dd; border-radius: 10px; border-left: 5px solid var(--ouro); font-size: 0.95rem; color: var(--texto); }
 
 /* ==========================================
-   17. HISTÓRIA (LINHA DO TEMPO)
+    HISTÓRIA (LINHA DO TEMPO)
+    be f ore: antes do conteudo que vai vir dentro
    ========================================== */
 .linha-tempo { position: relative; max-width: 860px; margin: 0 auto; list-style: none; }
 .linha-tempo::before { content: ""; position: absolute; left: 18px; top: 8px; bottom: 8px; width: 4px; border-radius: 2px; background: linear-gradient(180deg, #f3dc82, #c9a227, #f3dc82); }
@@ -473,7 +485,7 @@ tr + tr td { border-top: 1px solid #e9eef5; }
 .foto-historia figcaption { padding: 12px 8px 4px; text-align: center; font-family: var(--fonte-titulo); font-style: italic; color: var(--azul-escuro); }
 
 /* ==========================================
-   18. RODAPÉ
+    RODAPÉ
    ========================================== */
 .rodape { color: var(--azul-claro); background: radial-gradient(ellipse at 50% 0%, rgba(143, 189, 232, 0.25), transparent 70%), var(--azul-escuro); border-top: 4px solid transparent; border-image: var(--ouro-brilho) 1; }
 .rodape-int { width: min(1120px, 100% - 64px); margin: 0 auto; padding: 48px 0 34px; display: grid; grid-template-columns: 1.3fr 1fr 1.2fr; gap: 48px; }
