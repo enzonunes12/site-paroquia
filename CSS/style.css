@@ -1,6 +1,6 @@
 /* ==========================================
-   1. VARIÁVEIS (ESTOJO DE CORES)
-   Palavra-chave: Guarda cores e fontes globais para mudar o site inteiro de uma vez.
+   1. Cores
+   Guarda cores e fontes globais para mudar o site inteiro de uma vez.
    ========================================== */
 :root {
   --azul: #2c5f9e;
@@ -24,9 +24,9 @@
 }
 
 /* ==========================================
-   2. CONFIGURAÇÕES GERAIS
+   2. Configurações Gerais
    ========================================== */
-/* [Apresentação] Zera margens padrão e deixa rolagem suave (tobogã) */
+/* [*] Zera margens padrão e deixa rolagem suave (escorregador) */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 
@@ -227,7 +227,7 @@ a:focus-visible { outline: 3px solid var(--ouro); outline-offset: 3px; }
 
 .foto-heroi { position: relative; animation: subir 1.1s 0.15s ease both; }
 
-/* [Apresentação - FOTO] Borda branca + box-shadow (sombra 3D + brilho dourado) */
+/* [foto] Borda branca + box-shadow (sombra 3D + brilho dourado) */
 .foto-heroi img {
   display: block;
   width: 100%;
@@ -238,7 +238,7 @@ a:focus-visible { outline: 3px solid var(--ouro); outline-offset: 3px; }
   box-shadow: 0 0 0 3px var(--ouro), 0 26px 50px rgba(23, 55, 95, 0.28), 0 0 70px rgba(243, 220, 130, 0.6);
 }
 
-/* [Apresentação - SELO] position: absolute (cola por cima da foto igual a um ímã) */
+/* [selo] position: absolute (cola por cima da foto igual a um ímã) */
 .selo {
   position: absolute;
   left: -38px;
@@ -266,7 +266,7 @@ a:focus-visible { outline: 3px solid var(--ouro); outline-offset: 3px; }
   position: relative;
   z-index: 2;
   width: min(1120px, 100% - 64px);
-  /* [Apresentação] Margem negativa puxa os cartões para cima invadindo a seção */
+  /* [margin] Margem negativa puxa os cartões para cima invadindo a seção */
   margin: -70px auto 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -320,7 +320,7 @@ main { width: min(1120px, 100% - 64px); margin: 0 auto; padding: 72px 0 80px; }
 .secao > p { max-width: 72ch; margin-left: auto; margin-right: auto; }
 .secao > p + p { margin-top: 14px; }
 
-/* [Apresentação - GRID] repeat(3, 1fr) divide o espaço em 3 colunas iguais */
+/* [GRID] repeat(3, 1fr) divide o espaço em 3 colunas iguais */
 .tres { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
 .dois { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; }
 
